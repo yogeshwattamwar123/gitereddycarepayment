@@ -29,7 +29,7 @@ export class AppComponent {
     console.log(secureData);
     Accept.dispatchData(secureData, responseHandler);
 
-    function responseHandler(response) {
+    function responseHandler(response:any) {
         if (response.messages.resultCode === "Error") {
             var i = 0;
             while (i < response.messages.message.length) {
