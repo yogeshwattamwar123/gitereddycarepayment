@@ -18,10 +18,10 @@ export class AppComponent {
         authData["apiLoginID"] = "7MzB2j6t";
 
     var cardData = {};
-        cardData["cardNumber"] = (<HTMLInputElement>document.getElementById("card_number")).value;
-        cardData["month"] = (<HTMLInputElement>document.getElementById("month")).value;
-        cardData["year"] = (<HTMLInputElement>document.getElementById("year")).value;
-        cardData["cardCode"] = (<HTMLInputElement>document.getElementById("code")).value;
+        cardData["cardNumber"] = (<HTMLInputElement>document.getElementById("cardNumber")).value;
+        cardData["month"] = (<HTMLInputElement>document.getElementById("expMonth")).value;
+        cardData["year"] = (<HTMLInputElement>document.getElementById("expYear")).value;
+        cardData["cardCode"] = (<HTMLInputElement>document.getElementById("cardCode")).value;
 
     var secureData = {};
         secureData["authData"] = authData;
@@ -53,10 +53,10 @@ paymentFormUpdate(opaqueData) {
 
     // If using your own form to collect the sensitive data from the customer,
     // blank out the fields before submitting them to your server.
-    (<HTMLInputElement>document.getElementById("card_number")).value = "";
-    (<HTMLInputElement>document.getElementById("month")).value = "";
-    (<HTMLInputElement>document.getElementById("year")).value = "";
-    (<HTMLInputElement>document.getElementById("code")).value = "";
+    (<HTMLInputElement>document.getElementById("cardNumber")).value = "";
+    (<HTMLInputElement>document.getElementById("expMonth")).value = "";
+    (<HTMLInputElement>document.getElementById("expYear")).value = "";
+    (<HTMLInputElement>document.getElementById("cardCode")).value = "";
 }
 
 }

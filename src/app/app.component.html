@@ -9,83 +9,21 @@
               <p>By proceeding, your credit card will be charged <b>$1</b> for your visit.</p>
               <hr>
               <div class="well">
-                  <form method="POST" id="paymentForm" action="" class="form-horizontal" #paymentForm="ngForm">
-                      <input class="form-control" id="dataValue" name="dataValue" type="text" placeholder="" ngModel>
-                      <input class="form-control" id="dataDescriptor" name="dataDescriptor" type="text" placeholder="" ngModel>
-                      
-                      <div class="row">
-                          <div class="col-md-12">
-                              <div class="form-group">
-                                  <label class="control-label required" for="card_number" aria-required="true">Credit
-                                      Card Number
-                                  </label>
-                                  <input class="form-control" id="card_number" name="card_number" type="text" placeholder="card_number" ngModel>
-                                 
-                              </div>
-                          </div>
-                          <div class="col-md-4">
-                              <div class="form-group">
-                                  <label class="control-label required" for="month" aria-required="true">Credit
-                                      Card Expirary Date
-                                  </label>
-                                  <select name="month" id="month" required="" class="form-control" aria-required="true" ngModel>
-                                      <option value="">MM</option>
-                                      <option value="01">Jan</option>
-                                      <option value="02">Feb</option>
-                                      <option value="03">Mar</option>
-                                      <option value="04">Apr</option>
-                                      <option value="05">May</option>
-                                      <option value="06">June</option>
-                                      <option value="07">July</option>
-                                      <option value="08">Aug</option>
-                                      <option value="09">Sep</option>
-                                      <option value="10">Oct</option>
-                                      <option value="11">Nov</option>
-                                      <option value="12">Dec</option>
-                                  </select>
-                              </div>
-                          </div>
-                          <div class="col-md-4">
-                              <div class="form-group">
-                                  <label class="control-label" for="year" aria-required="true"
-                                      style="margin-bottom: 11px">&nbsp;
-                                  </label>
-                                  <select name="year" id="year" required="" class="form-control" aria-required="true" ngModel>
-                                      <option value="">YYYY</option>
-                                      <option value="19">2019</option>
-                                      <option value="20">2020</option>
-                                      <option value="21">2021</option>
-                                      <option value="22">2022</option>
-                                      <option value="23">2023</option>
-                                      <option value="24">2024</option>
-                                      <option value="25">2025</option>
-                                      <option value="26">2026</option>
-                                      <option value="27">2027</option>
-                                      <option value="28">2028</option>
-                                      <option value="29">2029</option>
-                                      <option value="30">2030</option>
-                                      <option value="31">2031</option>
-                                      <option value="32">2032</option>
-                                  </select>
-                              </div>
-                          </div>
-                          <div class="col-md-4">
-                              <div class="form-group">
-                                  <label class="control-label required" for="code" aria-required="true">CVV <span
-                                          class="help lblhelp">(on back of card)</span>
-                                  </label>
-                                  <input class="form-control" id="code" name="code" type="text" placeholder="" ngModel/>
-                              </div>
-                          </div>
-                          <div class="col-sm-12">
-                              <div class="form-group text-right">
-                                  <button type="submit" (click)="paymentform()" class="btn btn-common btn-primary br-4" style="padding: 11px 8px 10px; margin-bottom: 5px;">
-                                      Pay & Continue <i class="fa fa-chevron-right"></i>
-                                  </button>
-                              </div>
-                          </div>
-                      </div>
-                  </form>
+                    <form id="paymentForm"
+                    method="POST"
+                    action="" #paymentForm="ngForm">
+                    <input type="text" name="cardNumber" id="cardNumber" placeholder="cardNumber" ngModel/> <br><br>
+                    <input type="text" name="expMonth" id="expMonth" placeholder="expMonth" ngModel/> <br><br>
+                    <input type="text" name="expYear" id="expYear" placeholder="expYear" ngModel/> <br><br>
+                    <input type="text" name="cardCode" id="cardCode" placeholder="cardCode" ngModel/> <br><br>
+                    <input type="text" name="accountNumber" id="accountNumber" placeholder="accountNumber" ngModel/> <br><br>
+                    <input type="text" name="routingNumber" id="routingNumber" placeholder="routingNumber" ngModel/> <br><br>
+                    <input type="text" name="nameOnAccount" id="nameOnAccount" placeholder="nameOnAccount" ngModel/> <br><br>
+                    <input type="text" name="accountType" id="accountType" placeholder="accountType" ngModel/> <br><br>
+                    <input type="hidden" name="dataValue" id="dataValue" />
+                    <input type="hidden" name="dataDescriptor" id="dataDescriptor" />
+                    <button type="button" onclick="sendPaymentDataToAnet()">Pay</button>       
+                </form>
               </div>
               <p class="text-center">Your credit card information is sent through our secure payment processor, and is not stored in our system</p>
               <div class="help text-right">
