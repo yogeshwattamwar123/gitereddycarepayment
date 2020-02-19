@@ -1,35 +1,136 @@
 
 
+
 <div class="container">
-  <div class="row">
-      <div class="col-lg-12">
-          <br>
-          <div class="billing-frm blkcontent">
-              <h1 class="hd-title"><span>Billing</span></h1>
-              <p>By proceeding, your credit card will be charged <b>$1</b> for your visit.</p>
-              <hr>
-              <div class="well">
-                    <form id="paymentForm"
-                    method="POST"
-                    action="" #paymentForm="ngForm">
-                    <input type="text" name="cardNumber" id="cardNumber" placeholder="cardNumber" ngModel/> <br><br>
-                    <input type="text" name="expMonth" id="expMonth" placeholder="expMonth" ngModel/> <br><br>
-                    <input type="text" name="expYear" id="expYear" placeholder="expYear" ngModel/> <br><br>
-                    <input type="text" name="cardCode" id="cardCode" placeholder="cardCode" ngModel/> <br><br>
-                    <input type="text" name="accountNumber" id="accountNumber" placeholder="accountNumber" ngModel/> <br><br>
-                    <input type="text" name="routingNumber" id="routingNumber" placeholder="routingNumber" ngModel/> <br><br>
-                    <input type="text" name="nameOnAccount" id="nameOnAccount" placeholder="nameOnAccount" ngModel/> <br><br>
-                    <input type="text" name="accountType" id="accountType" placeholder="accountType" ngModel/> <br><br>
-                    <input type="hidden" name="dataValue" id="dataValue" />
-                    <input type="hidden" name="dataDescriptor" id="dataDescriptor" />
-                    <button type="button" (click)="paymentform()">Pay</button>       
-                </form>
-              </div>
-              <p class="text-center">Your credit card information is sent through our secure payment processor, and is not stored in our system</p>
-              <div class="help text-right">
-                  Asterisk (*) indicates a required field1
-              </div>
-          </div>
-      </div>
-  </div>
-</div>
+        <div class="row">
+            <div class="col-lg-12">
+                <br>
+                <div class="billing-frm blkcontent">
+                    <h1 class="hd-title"><span>Billing</span></h1>
+                    <p>By proceeding, your credit card will be charged <b>$1</b> for your visit.</p>
+                    <hr>
+                    <div class="well">
+                        <form method="POST" id="paymentForm" action="{{paymenturl}}" class="form-horizontal" [formGroup]="consultstep3form" novalidate>
+                            <input class="form-control" id="dataValue" name="dataValue" type="text" placeholder="" formControlName="dataValue" [(ngModel)]="dataValue">
+                            <input class="form-control" id="dataDescriptor" name="dataDescriptor" type="text" placeholder="" formControlName="dataDescriptor" [(ngModel)]="dataDescriptor">
+                            
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label required" for="card_number" aria-required="true">Credit
+                                            Card Number
+                                        </label>
+                                        <input class="form-control" id="card_number" name="card_number" type="text" placeholder="card_number" formControlName="card_number" [(ngModel)]="card_number">
+                                        <label *ngIf="consultstep3form.controls['card_number'].invalid && consultstep3form.controls['card_number'].touched" class="errors">
+                                            <div *ngIf="consultstep3form.controls['card_number'].errors.required">
+                                                Card number required
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="control-label required" for="month" aria-required="true">Credit
+                                            Card Expirary Date
+                                        </label>
+                                        <select name="month" id="month" required="" class="form-control" aria-required="true" formControlName="month" [(ngModel)]="month">
+                                            <option value="">MM</option>
+                                            <option value="01">Jan</option>
+                                            <option value="02">Feb</option>
+                                            <option value="03">Mar</option>
+                                            <option value="04">Apr</option>
+                                            <option value="05">May</option>
+                                            <option value="06">June</option>
+                                            <option value="07">July</option>
+                                            <option value="08">Aug</option>
+                                            <option value="09">Sep</option>
+                                            <option value="10">Oct</option>
+                                            <option value="11">Nov</option>
+                                            <option value="12">Dec</option>
+                                        </select>
+                                        <label *ngIf="consultstep3form.controls['month'].invalid && consultstep3form.controls['month'].touched" class="errors">
+                                                <div *ngIf="consultstep3form.controls['month'].errors.required">
+                                                    Month required
+                                                </div>
+                                            </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="control-label" for="year" aria-required="true"
+                                            style="margin-bottom: 11px">&nbsp;
+                                        </label>
+                                        <select name="year" id="year" required="" class="form-control" aria-required="true" formControlName="year" [(ngModel)]="year">
+                                            <option value="">YYYY</option>
+                                            <option value="19">2019</option>
+                                            <option value="20">2020</option>
+                                            <option value="21">2021</option>
+                                            <option value="22">2022</option>
+                                            <option value="23">2023</option>
+                                            <option value="24">2024</option>
+                                            <option value="25">2025</option>
+                                            <option value="26">2026</option>
+                                            <option value="27">2027</option>
+                                            <option value="28">2028</option>
+                                            <option value="29">2029</option>
+                                            <option value="30">2030</option>
+                                            <option value="31">2031</option>
+                                            <option value="32">2032</option>
+                                        </select>
+                                        <label *ngIf="consultstep3form.controls['year'].invalid && consultstep3form.controls['year'].touched" class="errors">
+                                                <div *ngIf="consultstep3form.controls['year'].errors.required">
+                                                    Year required
+                                                </div>
+                                            </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="control-label required" for="code" aria-required="true">CVV <span
+                                                class="help lblhelp">(on back of card)</span>
+                                        </label>
+                                        <input class="form-control" id="code" name="code" type="text" placeholder="" formControlName="code" [(ngModel)]="code">
+                                        <label *ngIf="consultstep3form.controls['code'].invalid && consultstep3form.controls['code'].touched" class="errors">
+                                                <div *ngIf="consultstep3form.controls['code'].errors.required">
+                                                        CVV required
+                                                </div>
+                                            </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="control-label required" for="address_zip" aria-required="true">Zip
+                                        </label>
+                                        <input class="form-control" id="address_zip" name="address_zip" type="text" placeholder="" formControlName="address_zip">
+                                        <label *ngIf="consultstep3form.controls['address_zip'].invalid && consultstep3form.controls['address_zip'].touched" class="errors">
+                                                <div *ngIf="consultstep3form.controls['address_zip'].errors.required">
+                                                    Zip code required
+                                                </div>
+                                            </label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="form-group existingpatient">
+                                        <input class="" id="checkbox" name="checkbox" type="checkbox"> &nbsp;
+                                        <label class="addcontactlabel" for="checkbox">Save Card</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="form-group text-right">
+                                        <a class="btn btn-common btn-primary br-4" (click)="RemoveConsultaionstages()" href="javascript:void(0);" style="margin-right: 5px; margin-bottom: 5px;"><i class="fa fa-times"></i> Cancel Visit</a>
+                                        <button type="submit" (click)="paymentform()" class="btn btn-common btn-primary br-4" style="padding: 11px 8px 10px; margin-bottom: 5px;" [disabled]="consultstep3form.pristine || consultstep3form.invalid">
+                                            Pay & Continue <i class="fa fa-chevron-right"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <p class="text-center">Your credit card information is sent through our secure payment processor, and is not stored in our system</p>
+                    <div class="help text-right">
+                        Asterisk (*) indicates a required field1
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

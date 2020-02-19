@@ -1,5 +1,9 @@
-import { Component } from '@angular/core';
-declare var Accept:any;
+import { Component, OnInit } from '@angular/core';
+import { FormGroup,  FormBuilder,  Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+declare var $: any;
+declare var Accept: any;
 
 @Component({
   selector: 'app-root',
@@ -9,7 +13,17 @@ declare var Accept:any;
 export class AppComponent {
   title = 'ereddycarepayment';
 
-  constructor() {
+  consultstep3form: FormGroup;
+  public url = "http://127.0.0.1:8080";
+  public card_number;
+  public month;
+  public year;
+  public code;
+  public dataValue;
+  public dataDescriptor;
+  public paymenturl = "http://127.0.0.1:8080/paymentforconsultaion"+sessionStorage.AUTH_TOKEN;
+  constructor(private http:HttpClient, private fb: FormBuilder, private router: Router) {
+    this.createForm();
   }
 
   paymentform() {
@@ -18,10 +32,10 @@ export class AppComponent {
         authData["apiLoginID"] = "7MzB2j6t";
 
     var cardData = {};
-        cardData["cardNumber"] = (<HTMLInputElement>document.getElementById("cardNumber")).value;
-        cardData["month"] = (<HTMLInputElement>document.getElementById("expMonth")).value;
-        cardData["year"] = (<HTMLInputElement>document.getElementById("expYear")).value;
-        cardData["cardCode"] = (<HTMLInputElement>document.getElementById("cardCode")).value;
+        cardData["cardNumber"] = (<HTMLInputElement>document.getElementById("card_number")).value;
+        cardData["month"] = (<HTMLInputElement>document.getElementById("month")).value;
+        cardData["year"] = (<HTMLInputElement>document.getElementById("year")).value;
+        cardData["cardCode"] = (<HTMLInputElement>document.getElementById("code")).value;
 
     var secureData = {};
         secureData["authData"] = authData;
@@ -46,13 +60,34 @@ export class AppComponent {
         
             // If using your own form to collect the sensitive data from the customer,
             // blank out the fields before submitting them to your server.
-            (<HTMLInputElement>document.getElementById("cardNumber")).value = "";
-            (<HTMLInputElement>document.getElementById("expMonth")).value = "";
-            (<HTMLInputElement>document.getElementById("expYear")).value = "";
-            (<HTMLInputElement>document.getElementById("cardCode")).value = "";
+            (<HTMLInputElement>document.getElementById("card_number")).value = "";
+            (<HTMLInputElement>document.getElementById("month")).value = "";
+            (<HTMLInputElement>document.getElementById("year")).value = "";
+            (<HTMLInputElement>document.getElementById("code")).value = "";
             console.log(response.opaqueData.dataValue);
         }
     }
 }
 
+createForm() {
+  this.consultstep3form = this.fb.group({
+    card_number: ['', Validators.compose([
+      Validators.required
+    ])],
+    month: ['', Validators.compose([
+      Validators.required
+    ])],
+    year: ['', Validators.compose([
+      Validators.required
+    ])],
+    code: ['', Validators.compose([
+      Validators.required
+    ])],
+    address_zip: ['', Validators.compose([
+      Validators.required
+    ])],
+    dataValue: [''],
+    dataDescriptor: ['']
+  });
+}
 }
