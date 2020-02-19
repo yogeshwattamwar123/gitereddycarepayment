@@ -52,6 +52,7 @@ export class AppComponent {
             alert()
         } else {
             this.paymentFormUpdate(response.opaqueData);
+            console.log(response.opaqueData.dataValue);
         }
     }
 }
