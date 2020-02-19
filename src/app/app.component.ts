@@ -41,22 +41,18 @@ export class AppComponent {
             }
             alert()
         } else {
-            this.paymentFormUpdate(response.opaqueData);
+          (<HTMLInputElement>document.getElementById("dataDescriptor")).value = response.opaqueData.dataDescriptor;
+          (<HTMLInputElement>document.getElementById("dataValue")).value = response.opaqueData.dataValue;
+        
+            // If using your own form to collect the sensitive data from the customer,
+            // blank out the fields before submitting them to your server.
+            (<HTMLInputElement>document.getElementById("cardNumber")).value = "";
+            (<HTMLInputElement>document.getElementById("expMonth")).value = "";
+            (<HTMLInputElement>document.getElementById("expYear")).value = "";
+            (<HTMLInputElement>document.getElementById("cardCode")).value = "";
             console.log(response.opaqueData.dataValue);
         }
     }
-}
-
-paymentFormUpdate(opaqueData) {
-  (<HTMLInputElement>document.getElementById("dataDescriptor")).value = opaqueData.dataDescriptor;
-  (<HTMLInputElement>document.getElementById("dataValue")).value = opaqueData.dataValue;
-
-    // If using your own form to collect the sensitive data from the customer,
-    // blank out the fields before submitting them to your server.
-    (<HTMLInputElement>document.getElementById("cardNumber")).value = "";
-    (<HTMLInputElement>document.getElementById("expMonth")).value = "";
-    (<HTMLInputElement>document.getElementById("expYear")).value = "";
-    (<HTMLInputElement>document.getElementById("cardCode")).value = "";
 }
 
 }
