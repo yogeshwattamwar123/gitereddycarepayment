@@ -40,19 +40,24 @@ export class AppComponent {
     Accept.dispatchData(secureData, responseHandler);
 
     function responseHandler(response) {
-        if (response.messages.resultCode === "Error") {
-            var i = 0;
-            while (i < response.messages.message.length) {
-                console.log(
-                    response.messages.message[i].code + ": " +
-                    response.messages.message[i].text
-                );
-                i = i + 1;
-            }
-            alert()
-        } else {
+        try{
+          // if (response.messages.resultCode === "Error") {
+            // var i = 0;
+            // while (i < response.messages.message.length) {
+            //     console.log(
+            //         response.messages.message[i].code + ": " +
+            //         response.messages.message[i].text
+            //     );
+            //     i = i + 1;
+            // }
+            // alert()
+        // } else {
             this.paymentFormUpdate(response.opaqueData);
             console.log(response.opaqueData.dataValue);
+        // }
+        }
+        catch(e){
+          console.log(e)
         }
     }
 }
