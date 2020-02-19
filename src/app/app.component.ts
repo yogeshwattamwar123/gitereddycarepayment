@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { FormGroup,  FormBuilder,  Validators } from '@angular/forms';
 declare var Accept:any;
 
 @Component({
@@ -8,18 +7,9 @@ declare var Accept:any;
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  consultstep3form: FormGroup;
   title = 'ereddycarepayment';
 
-  public dataValue;
-  public dataDescriptor;
-  public card_number;
-  public month;
-  public year;
-  public code;
-
-  constructor(private fb: FormBuilder) {
-    this.createForm();
+  constructor() {
   }
 
   paymentform() {
@@ -69,25 +59,4 @@ paymentFormUpdate(opaqueData) {
     (<HTMLInputElement>document.getElementById("code")).value = "";
 }
 
-  createForm() {
-    this.consultstep3form = this.fb.group({
-      card_number: ['', Validators.compose([
-        Validators.required
-      ])],
-      month: ['', Validators.compose([
-        Validators.required
-      ])],
-      year: ['', Validators.compose([
-        Validators.required
-      ])],
-      code: ['', Validators.compose([
-        Validators.required
-      ])],
-      address_zip: ['', Validators.compose([
-        Validators.required
-      ])],
-      dataValue: [''],
-      dataDescriptor: ['']
-    });
-  }
 }
