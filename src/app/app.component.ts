@@ -36,7 +36,7 @@ export class AppComponent {
     var secureData = {};
         secureData["authData"] = authData;
         secureData["cardData"] = cardData;
-
+    console.log(secureData);
     Accept.dispatchData(secureData, responseHandler);
 
     function responseHandler(response) {
@@ -49,6 +49,7 @@ export class AppComponent {
                 );
                 i = i + 1;
             }
+            alert()
         } else {
             this.paymentFormUpdate(response.opaqueData);
         }
