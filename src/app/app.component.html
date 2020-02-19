@@ -22,7 +22,7 @@
                     <input type="text" name="accountType" id="accountType" placeholder="accountType" ngModel/> <br><br>
                     <input type="hidden" name="dataValue" id="dataValue" />
                     <input type="hidden" name="dataDescriptor" id="dataDescriptor" />
-                    <button type="button" onclick="paymentform()">Pay</button>       
+                    <button type="button" (click)="paymentform()">Pay</button>       
                 </form>
               </div>
               <p class="text-center">Your credit card information is sent through our secure payment processor, and is not stored in our system</p>
