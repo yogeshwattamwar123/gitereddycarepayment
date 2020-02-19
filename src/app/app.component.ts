@@ -49,6 +49,7 @@ export class AppComponent {
                 );
                 i = i + 1;
             }
+          alert()
         } else {
             this.paymentFormUpdate(response.opaqueData);
         }
