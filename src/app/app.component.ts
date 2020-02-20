@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 declare var $: any;
 declare var Accept: any;
-declare var paymentdatatoken: any;
 
 @Component({
   selector: 'app-root',
@@ -22,6 +21,7 @@ export class AppComponent implements OnInit{
   public code;
   public dataValue;
   public dataDescriptor;
+  public paymentdatatoken;
   constructor(private http:HttpClient, private fb: FormBuilder, private router: Router) {
     this.createForm();
   }
@@ -72,14 +72,14 @@ export class AppComponent implements OnInit{
             (<HTMLInputElement>document.getElementById("year")).value = "";
             (<HTMLInputElement>document.getElementById("code")).value = "";
             console.log(response.opaqueData.dataValue);
-            paymentdatatoken = {
+            this.paymentdatatoken = {
               "dataDescriptor" : response.opaqueData.dataDescriptor,
               "dataValue" : response.opaqueData.dataValue,
             }
         }
     }
-    if(paymentdatatoken){
-      this.postpaymentdata(paymentdatatoken);
+    if(this.paymentdatatoken){
+      this.postpaymentdata(this.paymentdatatoken);
     }
 }
 
