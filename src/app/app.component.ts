@@ -33,7 +33,23 @@ export class AppComponent implements OnInit{
     });
   }
 
-  paymentform() {
+  paymentform(data) {
+    var paymentprocessinfo = {
+      "dataValue" : this.dataValue,
+      "dataDescriptor" : this.dataDescriptor,
+      "amount" : data["amount"],
+      "address_zip" : data["address_zip"]
+    }
+    console.log(data);
+    console.log(paymentprocessinfo);
+    this.http.post(this.url+"/paymentforconsultaion/5e43a999feb8ea2affebb7f6",paymentprocessinfo)
+      .subscribe(paymentres => {
+      });
+  
+  }
+
+  postpaymentdata(data) {
+    
     var authData = {};
         authData["clientKey"] = "7cj5EL8Dg4bdJqtXsygQZKRxNXjyQ8m4P4VVQgqg53aYSQ8RmvM7G4wMc9qN7Gvv";
         authData["apiLoginID"] = "7MzB2j6t";
@@ -75,42 +91,28 @@ export class AppComponent implements OnInit{
             
         }
     }
-}
-
-postpaymentdata(data) {
-  var paymentprocessinfo = {
-    "dataValue" : this.dataValue,
-    "dataDescriptor" : this.dataDescriptor,
-    "amount" : data["amount"],
-    "address_zip" : data["address_zip"]
   }
-  console.log(data);
-  console.log(paymentprocessinfo);
-  this.http.post(this.url+"/paymentforconsultaion/5e43a999feb8ea2affebb7f6",paymentprocessinfo)
-    .subscribe(paymentres => {
-    });
-}
 
-createForm() {
-  this.consultstep3form = this.fb.group({
-    card_number: ['', Validators.compose([
-      Validators.required
-    ])],
-    month: ['', Validators.compose([
-      Validators.required
-    ])],
-    year: ['', Validators.compose([
-      Validators.required
-    ])],
-    code: ['', Validators.compose([
-      Validators.required
-    ])],
-    address_zip: ['', Validators.compose([
-      Validators.required
-    ])],
-    dataValue: [''],
-    dataDescriptor: [''],
-    amount:['']
-  });
-}
+  createForm() {
+    this.consultstep3form = this.fb.group({
+      card_number: ['', Validators.compose([
+        Validators.required
+      ])],
+      month: ['', Validators.compose([
+        Validators.required
+      ])],
+      year: ['', Validators.compose([
+        Validators.required
+      ])],
+      code: ['', Validators.compose([
+        Validators.required
+      ])],
+      address_zip: ['', Validators.compose([
+        Validators.required
+      ])],
+      dataValue: [''],
+      dataDescriptor: [''],
+      amount:['']
+    });
+  }
 }
