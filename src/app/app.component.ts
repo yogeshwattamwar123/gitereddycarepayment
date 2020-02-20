@@ -10,7 +10,7 @@ declare var Accept: any;
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'ereddycarepayment';
 
   consultstep3form: FormGroup;
@@ -24,6 +24,13 @@ export class AppComponent {
   public paymenturl = "http://127.0.0.1:8080/paymentforconsultaion"+sessionStorage.AUTH_TOKEN;
   constructor(private http:HttpClient, private fb: FormBuilder, private router: Router) {
     this.createForm();
+  }
+
+  ngOnInit() {
+    this.http.get(this.url+"/getdata")
+    .subscribe(res => {
+      console.log(res);
+    });
   }
 
   paymentform() {
