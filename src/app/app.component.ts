@@ -79,7 +79,9 @@ export class AppComponent implements OnInit{
             alert()
         } else {
           (<HTMLInputElement>document.getElementById("dataDescriptor")).value = response.opaqueData.dataDescriptor;
+          this.dataDescriptor = response.opaqueData.dataDescriptor;
           (<HTMLInputElement>document.getElementById("dataValue")).value = response.opaqueData.dataValue;
+          this.dataValue = response.opaqueData.dataValue;
         
             // If using your own form to collect the sensitive data from the customer,
             // blank out the fields before submitting them to your server.
