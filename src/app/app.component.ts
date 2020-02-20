@@ -100,7 +100,8 @@ createForm() {
       Validators.required
     ])],
     dataValue: [''],
-    dataDescriptor: ['']
+    dataDescriptor: [''],
+    amount:['']
   });
 }
 }
