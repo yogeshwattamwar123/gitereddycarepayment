@@ -21,6 +21,7 @@ export class AppComponent implements OnInit{
   public code;
   public dataValue;
   public dataDescriptor;
+  public amount = 76;
   constructor(private http:HttpClient, private fb: FormBuilder, private router: Router) {
     this.createForm();
   }
@@ -77,6 +78,7 @@ export class AppComponent implements OnInit{
 }
 
 postpaymentdata(data) {
+  console.log(data);
   this.http.post(this.url+"/paymentforconsultaion/5e43a999feb8ea2affebb7f6",data)
     .subscribe(paymentres => {
     });
