@@ -79,12 +79,13 @@ export class AppComponent implements OnInit{
 
 postpaymentdata(data) {
   var paymentprocessinfo = {
-    "dataValue" : data["dataValue"],
-    "dataDescriptor" : data["dataDescriptor"],
+    "dataValue" : this.dataValue,
+    "dataDescriptor" : this.dataDescriptor,
     "amount" : data["amount"],
     "address_zip" : data["address_zip"]
   }
   console.log(data);
+  console.log(paymentprocessinfo);
   this.http.post(this.url+"/paymentforconsultaion/5e43a999feb8ea2affebb7f6",paymentprocessinfo)
     .subscribe(paymentres => {
     });
