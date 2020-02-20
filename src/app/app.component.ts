@@ -33,23 +33,7 @@ export class AppComponent implements OnInit{
     });
   }
 
-  paymentform(data) {
-    var paymentprocessinfo = {
-      "dataValue" : this.dataValue,
-      "dataDescriptor" : this.dataDescriptor,
-      "amount" : data["amount"],
-      "address_zip" : data["address_zip"]
-    }
-    console.log(data);
-    console.log(paymentprocessinfo);
-    this.http.post(this.url+"/paymentforconsultaion/5e43a999feb8ea2affebb7f6",paymentprocessinfo)
-      .subscribe(paymentres => {
-      });
-  
-  }
-
-  postpaymentdata(data) {
-    
+  paymentform() {
     var authData = {};
         authData["clientKey"] = "7cj5EL8Dg4bdJqtXsygQZKRxNXjyQ8m4P4VVQgqg53aYSQ8RmvM7G4wMc9qN7Gvv";
         authData["apiLoginID"] = "7MzB2j6t";
@@ -79,9 +63,7 @@ export class AppComponent implements OnInit{
             alert()
         } else {
           (<HTMLInputElement>document.getElementById("dataDescriptor")).value = response.opaqueData.dataDescriptor;
-          this.dataDescriptor = response.opaqueData.dataDescriptor;
           (<HTMLInputElement>document.getElementById("dataValue")).value = response.opaqueData.dataValue;
-          this.dataValue = response.opaqueData.dataValue;
         
             // If using your own form to collect the sensitive data from the customer,
             // blank out the fields before submitting them to your server.
@@ -93,28 +75,44 @@ export class AppComponent implements OnInit{
             
         }
     }
-  }
+}
 
-  createForm() {
-    this.consultstep3form = this.fb.group({
-      card_number: ['', Validators.compose([
-        Validators.required
-      ])],
-      month: ['', Validators.compose([
-        Validators.required
-      ])],
-      year: ['', Validators.compose([
-        Validators.required
-      ])],
-      code: ['', Validators.compose([
-        Validators.required
-      ])],
-      address_zip: ['', Validators.compose([
-        Validators.required
-      ])],
-      dataValue: [''],
-      dataDescriptor: [''],
-      amount:['']
-    });
+postpaymentdata(data) {
+  if(data["dataValue"] != undefined){
+    var paymentprocessinfo = {
+      "dataValue" : data["dataValue"],
+      "dataDescriptor" : data["dataDescriptor"],
+      "amount" : data["amount"],
+      "address_zip" : data["address_zip"]
+    }
+    console.log(data);
+    console.log(paymentprocessinfo);
+    this.http.post(this.url+"/paymentforconsultaion/5e43a999feb8ea2affebb7f6",paymentprocessinfo)
+      .subscribe(paymentres => {
+      });
   }
+}
+
+createForm() {
+  this.consultstep3form = this.fb.group({
+    card_number: ['', Validators.compose([
+      Validators.required
+    ])],
+    month: ['', Validators.compose([
+      Validators.required
+    ])],
+    year: ['', Validators.compose([
+      Validators.required
+    ])],
+    code: ['', Validators.compose([
+      Validators.required
+    ])],
+    address_zip: ['', Validators.compose([
+      Validators.required
+    ])],
+    dataValue: [''],
+    dataDescriptor: [''],
+    amount:['']
+  });
+}
 }
