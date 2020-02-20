@@ -57,14 +57,22 @@ export class AppComponent {
         } else {
           (<HTMLInputElement>document.getElementById("dataDescriptor")).value = response.opaqueData.dataDescriptor;
           (<HTMLInputElement>document.getElementById("dataValue")).value = response.opaqueData.dataValue;
-        
-            // If using your own form to collect the sensitive data from the customer,
-            // blank out the fields before submitting them to your server.
-            (<HTMLInputElement>document.getElementById("card_number")).value = "";
-            (<HTMLInputElement>document.getElementById("month")).value = "";
-            (<HTMLInputElement>document.getElementById("year")).value = "";
-            (<HTMLInputElement>document.getElementById("code")).value = "";
-            console.log(response.opaqueData.dataValue);
+          
+          // If using your own form to collect the sensitive data from the customer,
+          // blank out the fields before submitting them to your server.
+          (<HTMLInputElement>document.getElementById("card_number")).value = "";
+          (<HTMLInputElement>document.getElementById("month")).value = "";
+          (<HTMLInputElement>document.getElementById("year")).value = "";
+          (<HTMLInputElement>document.getElementById("code")).value = "";
+          console.log(response.opaqueData.dataValue);
+          var data = {
+            dataDescriptor : response.opaqueData.dataDescriptor,
+            dataValue : response.opaqueData.dataValue
+          }
+          this.http.post(this.url+"/paymentforconsultaion/5e43a999feb8ea2affebb7f6",data)
+          .subscribe(paymentres => {
+
+          });
         }
     }
 }
