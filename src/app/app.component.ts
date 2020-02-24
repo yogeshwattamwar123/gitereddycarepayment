@@ -78,7 +78,6 @@ export class AppComponent implements OnInit{
 }
 
 postpaymentdata(data) {
-  if(data["dataValue"] != undefined){
     var paymentprocessinfo = {
       "dataValue" : data["dataValue"],
       "dataDescriptor" : data["dataDescriptor"],
@@ -87,10 +86,18 @@ postpaymentdata(data) {
     }
     console.log(data);
     console.log(paymentprocessinfo);
-    this.http.post(this.url+"/paymentforconsultaion/5e43a999feb8ea2affebb7f6",paymentprocessinfo)
-      .subscribe(paymentres => {
-      });
-  }
+    // this.http.post(this.url+"/paymentforconsultaion/5e43a999feb8ea2affebb7f6",paymentprocessinfo)
+    //   .subscribe(paymentres => {
+    //   });
+
+    $.ajax({
+		
+      url: this.url+"/paymentforconsultaion/5e43a999feb8ea2affebb7f6",
+      data: {amount: data["amount"], dataDesc: data["dataDescriptor"], dataValue: data["dataValue"]},
+      method: 'POST',
+      timeout: 5000
+      
+    })
 }
 
 createForm() {
