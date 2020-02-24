@@ -78,17 +78,16 @@ export class AppComponent implements OnInit{
             console.log(response.opaqueData.dataValue);
         }
     }
-    var paymentprocessinfo = {
-      "dataValue" : (<HTMLInputElement>document.getElementById("dataValue")).value,
-      "dataDescriptor" : (<HTMLInputElement>document.getElementById("dataDescriptor")).value,
-      "amount" : (<HTMLInputElement>document.getElementById("amount")).value,
-      "address_zip" : (<HTMLInputElement>document.getElementById("address_zip")).value
-    }
-    console.log(paymentprocessinfo);
-    this.sendtoken(paymentprocessinfo);
 }
 
 postpaymentdata(data) {
+  var paymentprocessinfo = {
+    "dataValue" : (<HTMLInputElement>document.getElementById("dataValue")).value,
+    "dataDescriptor" : (<HTMLInputElement>document.getElementById("dataDescriptor")).value,
+    "amount" : (<HTMLInputElement>document.getElementById("amount")).value,
+    "address_zip" : (<HTMLInputElement>document.getElementById("address_zip")).value
+  }
+  console.log(paymentprocessinfo);
   this.lbladdress = data["address_zip"]
 }
 
