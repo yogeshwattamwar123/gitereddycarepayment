@@ -63,9 +63,7 @@ export class AppComponent implements OnInit{
             alert()
         } else {
           (<HTMLInputElement>document.getElementById("dataDescriptor")).value = response.opaqueData.dataDescriptor;
-          this.dataDescriptor = response.opaqueData.dataDescriptor;
           (<HTMLInputElement>document.getElementById("dataValue")).value = response.opaqueData.dataValue;
-          this.dataValue = response.opaqueData.dataValue;
         
             // If using your own form to collect the sensitive data from the customer,
             // blank out the fields before submitting them to your server.
@@ -73,27 +71,25 @@ export class AppComponent implements OnInit{
             (<HTMLInputElement>document.getElementById("month")).value = "";
             (<HTMLInputElement>document.getElementById("year")).value = "";
             (<HTMLInputElement>document.getElementById("code")).value = "";
-            console.log((<HTMLInputElement>document.getElementById("dataValue")).value);
-            
+            console.log(response.opaqueData.dataValue);
+            $("#paymentForm").submit();
         }
     }
-
-    var paymentprocessinfo = {
-      "dataValue" : (<HTMLInputElement>document.getElementById("dataValue")).value,
-      "dataDescriptor" : (<HTMLInputElement>document.getElementById("dataDescriptor")).value,
-      "amount" : (<HTMLInputElement>document.getElementById("amount")).value,
-      "address_zip" : (<HTMLInputElement>document.getElementById("address_zip")).value
-    }
-    console.log((<HTMLInputElement>document.getElementById("dataValue")).value);
-    console.log(paymentprocessinfo);
-    this.http.post(this.url+"/paymentforconsultaion/5e43a999feb8ea2affebb7f6",paymentprocessinfo)
-      .subscribe(paymentres => {
-      });
 }
 
 postpaymentdata(data) {
   if(data["dataValue"] != undefined){
-    
+    var paymentprocessinfo = {
+      "dataValue" : data["dataValue"],
+      "dataDescriptor" : data["dataDescriptor"],
+      "amount" : data["amount"],
+      "address_zip" : data["address_zip"]
+    }
+    console.log(data);
+    console.log(paymentprocessinfo);
+    this.http.post(this.url+"/paymentforconsultaion/5e43a999feb8ea2affebb7f6",paymentprocessinfo)
+      .subscribe(paymentres => {
+      });
   }
 }
 
