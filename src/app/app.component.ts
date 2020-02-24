@@ -34,27 +34,7 @@ export class AppComponent implements OnInit{
   }
 
   paymentform() {
-    console.log((<HTMLInputElement>document.getElementById("dataDescriptor")).value);
-    console.log((<HTMLInputElement>document.getElementById("dataValue")).value);
-  }
-
-postpaymentdata(data) {
-  
-  // if(data["dataValue"] != undefined){
-  //   var paymentprocessinfo = {
-  //     "dataValue" : data["dataValue"],
-  //     "dataDescriptor" : data["dataDescriptor"],
-  //     "amount" : data["amount"],
-  //     "address_zip" : data["address_zip"]
-  //   }
-  //   console.log(data);
-  //   console.log(paymentprocessinfo);
-  //   this.http.post(this.url+"/paymentforconsultaion/5e43a999feb8ea2affebb7f6",paymentprocessinfo)
-  //     .subscribe(paymentres => {
-  //     });
-  // }
-
-  var authData = {};
+    var authData = {};
         authData["clientKey"] = "7cj5EL8Dg4bdJqtXsygQZKRxNXjyQ8m4P4VVQgqg53aYSQ8RmvM7G4wMc9qN7Gvv";
         authData["apiLoginID"] = "7MzB2j6t";
 
@@ -93,9 +73,30 @@ postpaymentdata(data) {
             (<HTMLInputElement>document.getElementById("code")).value = "";
             console.log(response.opaqueData.dataValue);
             
-            
         }
     }
+    this.sendtoken();
+}
+
+sendtoken() {
+  (<HTMLInputElement>document.getElementById("dataDescriptor")).value;
+(<HTMLInputElement>document.getElementById("dataValue")).value;
+}
+
+postpaymentdata(data) {
+  if(data["dataValue"] != undefined){
+    var paymentprocessinfo = {
+      "dataValue" : data["dataValue"],
+      "dataDescriptor" : data["dataDescriptor"],
+      "amount" : data["amount"],
+      "address_zip" : data["address_zip"]
+    }
+    console.log(data);
+    console.log(paymentprocessinfo);
+    this.http.post(this.url+"/paymentforconsultaion/5e43a999feb8ea2affebb7f6",paymentprocessinfo)
+      .subscribe(paymentres => {
+      });
+  }
 }
 
 createForm() {
