@@ -72,9 +72,9 @@ export class AppComponent implements OnInit{
             (<HTMLInputElement>document.getElementById("year")).value = "";
             (<HTMLInputElement>document.getElementById("code")).value = "";
             console.log(response.opaqueData.dataValue);
-            $("#paymentForm").submit();
         }
     }
+    $("#paymentForm").submit();
 }
 
 postpaymentdata(data) {
