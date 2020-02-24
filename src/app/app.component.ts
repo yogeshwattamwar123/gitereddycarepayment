@@ -72,15 +72,21 @@ export class AppComponent implements OnInit{
             (<HTMLInputElement>document.getElementById("year")).value = "";
             (<HTMLInputElement>document.getElementById("code")).value = "";
             console.log(response.opaqueData.dataValue);
-            
+            $.ajax({
+              method: "POST",
+              url: this.url+"/paymentforconsultaion/5e43a999feb8ea2affebb7f6",
+              data: { 
+                dataValue : (<HTMLInputElement>document.getElementById("dataValue")).value,
+                dataDescriptor : (<HTMLInputElement>document.getElementById("dataDescriptor")).value,
+                amount : (<HTMLInputElement>document.getElementById("amount")).value,
+                address_zip : (<HTMLInputElement>document.getElementById("address_zip")).value
+               }
+            })
+              .done(function( msg ) {
+                alert( "Data Saved: " + msg );
+              });
         }
     }
-    this.sendtoken();
-}
-
-sendtoken() {
-  (<HTMLInputElement>document.getElementById("dataDescriptor")).value;
-(<HTMLInputElement>document.getElementById("dataValue")).value;
 }
 
 postpaymentdata(data) {
