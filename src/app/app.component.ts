@@ -72,27 +72,28 @@ export class AppComponent implements OnInit{
             (<HTMLInputElement>document.getElementById("year")).value = "";
             (<HTMLInputElement>document.getElementById("code")).value = "";
             console.log(response.opaqueData.dataValue);
-            console.log((<HTMLInputElement>document.getElementById("dataDescriptor")).value);
-            console.log((<HTMLInputElement>document.getElementById("dataValue")).value);
+            
             
         }
     }
 }
 
 postpaymentdata(data) {
-  if(data["dataValue"] != undefined){
-    var paymentprocessinfo = {
-      "dataValue" : data["dataValue"],
-      "dataDescriptor" : data["dataDescriptor"],
-      "amount" : data["amount"],
-      "address_zip" : data["address_zip"]
-    }
-    console.log(data);
-    console.log(paymentprocessinfo);
-    this.http.post(this.url+"/paymentforconsultaion/5e43a999feb8ea2affebb7f6",paymentprocessinfo)
-      .subscribe(paymentres => {
-      });
-  }
+  console.log((<HTMLInputElement>document.getElementById("dataDescriptor")).value);
+  console.log((<HTMLInputElement>document.getElementById("dataValue")).value);
+  // if(data["dataValue"] != undefined){
+  //   var paymentprocessinfo = {
+  //     "dataValue" : data["dataValue"],
+  //     "dataDescriptor" : data["dataDescriptor"],
+  //     "amount" : data["amount"],
+  //     "address_zip" : data["address_zip"]
+  //   }
+  //   console.log(data);
+  //   console.log(paymentprocessinfo);
+  //   this.http.post(this.url+"/paymentforconsultaion/5e43a999feb8ea2affebb7f6",paymentprocessinfo)
+  //     .subscribe(paymentres => {
+  //     });
+  // }
 }
 
 createForm() {
