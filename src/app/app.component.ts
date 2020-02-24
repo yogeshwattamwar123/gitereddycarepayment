@@ -72,59 +72,51 @@ export class AppComponent implements OnInit{
             (<HTMLInputElement>document.getElementById("year")).value = "";
             (<HTMLInputElement>document.getElementById("code")).value = "";
             console.log(response.opaqueData.dataValue);
-            $.ajax({
-              method: "POST",
-              url: this.url+"/paymentforconsultaion/5e43a999feb8ea2affebb7f6",
-              data: { 
-                dataValue : (<HTMLInputElement>document.getElementById("dataValue")).value,
-                dataDescriptor : (<HTMLInputElement>document.getElementById("dataDescriptor")).value,
-                amount : (<HTMLInputElement>document.getElementById("amount")).value,
-                address_zip : (<HTMLInputElement>document.getElementById("address_zip")).value
-               }
-            })
-              .done(function( msg ) {
-                alert( "Data Saved: " + msg );
-              });
+            this.sendtoken();
         }
     }
-}
-
-postpaymentdata(data) {
-  if(data["dataValue"] != undefined){
-    var paymentprocessinfo = {
-      "dataValue" : data["dataValue"],
-      "dataDescriptor" : data["dataDescriptor"],
-      "amount" : data["amount"],
-      "address_zip" : data["address_zip"]
-    }
-    console.log(data);
-    console.log(paymentprocessinfo);
-    this.http.post(this.url+"/paymentforconsultaion/5e43a999feb8ea2affebb7f6",paymentprocessinfo)
-      .subscribe(paymentres => {
-      });
   }
-}
 
-createForm() {
-  this.consultstep3form = this.fb.group({
-    card_number: ['', Validators.compose([
-      Validators.required
-    ])],
-    month: ['', Validators.compose([
-      Validators.required
-    ])],
-    year: ['', Validators.compose([
-      Validators.required
-    ])],
-    code: ['', Validators.compose([
-      Validators.required
-    ])],
-    address_zip: ['', Validators.compose([
-      Validators.required
-    ])],
-    dataValue: [''],
-    dataDescriptor: [''],
-    amount:['']
-  });
-}
+  public sendtoken(){
+
+  }
+  
+  postpaymentdata(data) {
+    if(data["dataValue"] != undefined){
+      var paymentprocessinfo = {
+        "dataValue" : data["dataValue"],
+        "dataDescriptor" : data["dataDescriptor"],
+        "amount" : data["amount"],
+        "address_zip" : data["address_zip"]
+      }
+      console.log(data);
+      console.log(paymentprocessinfo);
+      this.http.post(this.url+"/paymentforconsultaion/5e43a999feb8ea2affebb7f6",paymentprocessinfo)
+        .subscribe(paymentres => {
+        });
+    }
+  }
+
+  createForm() {
+    this.consultstep3form = this.fb.group({
+      card_number: ['', Validators.compose([
+        Validators.required
+      ])],
+      month: ['', Validators.compose([
+        Validators.required
+      ])],
+      year: ['', Validators.compose([
+        Validators.required
+      ])],
+      code: ['', Validators.compose([
+        Validators.required
+      ])],
+      address_zip: ['', Validators.compose([
+        Validators.required
+      ])],
+      dataValue: [''],
+      dataDescriptor: [''],
+      amount:['']
+    });
+  }
 }
