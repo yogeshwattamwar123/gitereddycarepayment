@@ -22,9 +22,6 @@ export class AppComponent implements OnInit{
   public dataValue;
   public dataDescriptor;
   public amount = 76;
-  public lbldatavalue : any;
-  public lbldatadescriptor : any;
-  public lbladdress;
   constructor(private http:HttpClient, private fb: FormBuilder, private router: Router) {
     this.createForm();
   }
@@ -67,8 +64,7 @@ export class AppComponent implements OnInit{
         } else {
           (<HTMLInputElement>document.getElementById("dataDescriptor")).value = response.opaqueData.dataDescriptor;
           (<HTMLInputElement>document.getElementById("dataValue")).value = response.opaqueData.dataValue;
-          this.lbldatavalue = response.opaqueData.dataValue
-          this.lbldatadescriptor = response.opaqueData.dataDescriptor
+        
             // If using your own form to collect the sensitive data from the customer,
             // blank out the fields before submitting them to your server.
             (<HTMLInputElement>document.getElementById("card_number")).value = "";
@@ -76,27 +72,27 @@ export class AppComponent implements OnInit{
             (<HTMLInputElement>document.getElementById("year")).value = "";
             (<HTMLInputElement>document.getElementById("code")).value = "";
             console.log(response.opaqueData.dataValue);
+            console.log((<HTMLInputElement>document.getElementById("dataDescriptor")).value);
+            console.log((<HTMLInputElement>document.getElementById("dataValue")).value);
+            
         }
     }
 }
 
 postpaymentdata(data) {
-  var paymentprocessinfo = {
-    "dataValue" : (<HTMLInputElement>document.getElementById("dataValue")).value,
-    "dataDescriptor" : (<HTMLInputElement>document.getElementById("dataDescriptor")).value,
-    "amount" : (<HTMLInputElement>document.getElementById("amount")).value,
-    "address_zip" : (<HTMLInputElement>document.getElementById("address_zip")).value
+  if(data["dataValue"] != undefined){
+    var paymentprocessinfo = {
+      "dataValue" : data["dataValue"],
+      "dataDescriptor" : data["dataDescriptor"],
+      "amount" : data["amount"],
+      "address_zip" : data["address_zip"]
+    }
+    console.log(data);
+    console.log(paymentprocessinfo);
+    this.http.post(this.url+"/paymentforconsultaion/5e43a999feb8ea2affebb7f6",paymentprocessinfo)
+      .subscribe(paymentres => {
+      });
   }
-  console.log(paymentprocessinfo);
-  this.lbladdress = data["address_zip"]
-}
-
-sendtoken(data) {
-  
-  console.log(data);
-  this.http.post(this.url+"/paymentforconsultaion/5e43a999feb8ea2affebb7f6",data)
-    .subscribe(paymentres => {
-    });
 }
 
 createForm() {
