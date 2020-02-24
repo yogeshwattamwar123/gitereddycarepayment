@@ -33,7 +33,7 @@ export class AppComponent implements OnInit{
     });
   }
 
-  paymentform() {
+  paymentform(data) {
     var authData = {};
         authData["clientKey"] = "7cj5EL8Dg4bdJqtXsygQZKRxNXjyQ8m4P4VVQgqg53aYSQ8RmvM7G4wMc9qN7Gvv";
         authData["apiLoginID"] = "7MzB2j6t";
@@ -72,12 +72,13 @@ export class AppComponent implements OnInit{
             (<HTMLInputElement>document.getElementById("year")).value = "";
             (<HTMLInputElement>document.getElementById("code")).value = "";
             console.log(response.opaqueData.dataValue);
+            this.postpaymentdata1(data);
             
         }
     }
 }
 
-postpaymentdata(data) {
+postpaymentdata1(data) {
   
 
   setTimeout(function(){
