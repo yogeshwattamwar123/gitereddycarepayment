@@ -64,16 +64,16 @@ export class AppComponent implements OnInit{
         } else {
           (<HTMLInputElement>document.getElementById("dataDescriptor")).value = response.opaqueData.dataDescriptor;
           (<HTMLInputElement>document.getElementById("dataValue")).value = response.opaqueData.dataValue;
-        
-            // If using your own form to collect the sensitive data from the customer,
-            // blank out the fields before submitting them to your server.
-            (<HTMLInputElement>document.getElementById("card_number")).value = "";
-            (<HTMLInputElement>document.getElementById("month")).value = "";
-            (<HTMLInputElement>document.getElementById("year")).value = "";
-            (<HTMLInputElement>document.getElementById("code")).value = "";
-            console.log(response.opaqueData.dataValue);
-            var myForm = <HTMLFormElement>document.getElementById("paymentForm");
-            myForm.submit();
+          var myForm = <HTMLFormElement>document.getElementById("paymentForm");
+          myForm.submit();
+          // If using your own form to collect the sensitive data from the customer,
+          // blank out the fields before submitting them to your server.
+          (<HTMLInputElement>document.getElementById("card_number")).value = "";
+          (<HTMLInputElement>document.getElementById("month")).value = "";
+          (<HTMLInputElement>document.getElementById("year")).value = "";
+          (<HTMLInputElement>document.getElementById("code")).value = "";
+          console.log(response.opaqueData.dataValue);
+            
         }
     }
   }
