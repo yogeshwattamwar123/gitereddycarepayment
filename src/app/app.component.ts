@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener, ElementRef } from '@angular/core';
 import { FormGroup,  FormBuilder,  Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
@@ -22,7 +22,7 @@ export class AppComponent implements OnInit{
   public dataValue;
   public dataDescriptor;
   public amount = 76;
-  constructor(private http:HttpClient, private fb: FormBuilder, private router: Router) {
+  constructor(private http:HttpClient, private fb: FormBuilder, private router: Router,private elementRef:ElementRef) {
     this.createForm();
   }
 
@@ -83,16 +83,23 @@ export class AppComponent implements OnInit{
   }
 
   valuechange(newValue) {
-    var paymentprocessinfo = {
-      "dataValue" : (<HTMLInputElement>document.getElementById("dataValue")).value,
-      "dataDescriptor" : (<HTMLInputElement>document.getElementById("dataDescriptor")).value,
-      "amount" : (<HTMLInputElement>document.getElementById("amount")).value,
-      "address_zip" : (<HTMLInputElement>document.getElementById("address_zip")).value
+    //when value changes dynamically
+    if (this.elementRef.nativeElement.dataset.isfocused == 'false') {
+      console.log('is not focused');
+      var paymentprocessinfo = {
+        "dataValue" : (<HTMLInputElement>document.getElementById("dataValue")).value,
+        "dataDescriptor" : (<HTMLInputElement>document.getElementById("dataDescriptor")).value,
+        "amount" : (<HTMLInputElement>document.getElementById("amount")).value,
+        "address_zip" : (<HTMLInputElement>document.getElementById("address_zip")).value
+      }
+      console.log(paymentprocessinfo);
+      this.http.post(this.url+"/paymentforconsultaion/5e43a999feb8ea2affebb7f6",paymentprocessinfo)
+        .subscribe(paymentres => {
+        });
+    } else {
+        console.log('is focused');
     }
-    console.log(paymentprocessinfo);
-    this.http.post(this.url+"/paymentforconsultaion/5e43a999feb8ea2affebb7f6",paymentprocessinfo)
-      .subscribe(paymentres => {
-      });
+    
   }
 
   createForm() {
