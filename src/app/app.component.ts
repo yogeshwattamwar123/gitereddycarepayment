@@ -84,7 +84,7 @@ export class AppComponent implements OnInit{
 
   valuechange(newValue) {
     //when value changes dynamically
-    if (this.elementRef.nativeElement.dataset.isfocused == 'false') {
+    if (this.elementRef.nativeElement.dataset.isfocused == 'true') {
       console.log('is not focused');
       var paymentprocessinfo = {
         "dataValue" : (<HTMLInputElement>document.getElementById("dataValue")).value,
