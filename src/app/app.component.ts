@@ -35,8 +35,8 @@ export class AppComponent implements OnInit{
 
   paymentform() {
     var authData = {};
-        authData["clientKey"] = "5RSBBL3y8Bxw9b56943J9Zyt5AJ32arm4PWsHWt2M6gnprmA8hxsfmyad44zdYKA";
-        authData["apiLoginID"] = "8W6s4k3Ma";
+        authData["clientKey"] = "7cj5EL8Dg4bdJqtXsygQZKRxNXjyQ8m4P4VVQgqg53aYSQ8RmvM7G4wMc9qN7Gvv";
+        authData["apiLoginID"] = "7MzB2j6t";
 
     var cardData = {};
         cardData["cardNumber"] = (<HTMLInputElement>document.getElementById("card_number")).value;
